@@ -9,6 +9,10 @@ import { NgForm } from '@angular/forms'
 export class AppComponent {
   title = 'angularForms';
   @ViewChild('myForm') form: NgForm;
+  defaultCountryl = 'india';
+  firstname: string;
+  lastname: string;
+  defaultGender: string = 'Male';
 
   gender = [
     { id: '1', value: 'Male' },
@@ -19,6 +23,36 @@ export class AppComponent {
 
   onSubmit() {
     console.log(this.form);
-    
   }
+
+
+  setDefaultValues() {
+    // this.form.value.personalDetails.firstname.setv = 'John';
+    // this.form.value.personalDetails.lastname = 'Doe';
+    // this.form.value.personalDetails.email = 'johndoe@gmail.com';
+    // this.form.setValue({
+    //   country: '',
+    //   gender: '',
+    //   hobbies: '',
+    //   personalDetails: {
+    //     firstname: 'John',
+    //     lastname: 'Doe',
+    //     email: 'johndoe@gmail.com'
+    //   }
+    // });
+
+    this.form.form.patchValue({
+      personalDetails: {
+        firstname: 'Foo',
+        lastname: 'Bar',
+        email: 'foobar@gmail.com'
+      }
+    });
+  }
+
+
+
+
+
+
 }

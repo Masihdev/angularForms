@@ -2,24 +2,32 @@
   <h2 id="registration">Registration Form</h2>
   <form (ngSubmit)="onSubmit()" #myForm="ngForm">
 
-    <div>
+    <div ngModelGroup="personalDetails" #pDetails="ngModelGroup">
       <label for="fname">First Name</label>
-      <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel>
-      
+      <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel required #fname="ngModel" [(ngModel)]="firstname">
+      <div *ngIf="fname.invalid && fname.touched">
+        <small>Firstname is a required field.</small>
+      </div>
+      <!-- <span *ngIf="firstname">You entered {{ firstname }}</span><br><br> -->
 
       <label for="lname">Last Name</label>
-      <input type="text" id="lname" placeholder="Your last name.." name="lastname" ngModel>
-      
+      <input type="text" id="lname" placeholder="Your last name.." name="lastname" ngModel required #lname="ngModel" [(ngModel)]="lastname">
+      <div *ngIf="lname.touched && lname.invalid">
+        <small>Lastname is a required field</small>
+      </div>
+      <!-- <span *ngIf="lastname">You entered {{ lastname }}</span><br><br> -->
 
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Your last email.." name="email" ngModel>
-
+      <input type="email" id="email" name="email" placeholder="Your last email.." name="email" ngModel required email>
       
-      <button>Set Default Values</button>
+      <div *ngIf="pDetails.touched && pDetails.invalid">
+        <small>Some of the required fields does not have a valid value.</small>
+      </div>
+      <button type="button" (click)="setDefaultValues()">Set Default Values</button>
     </div>
 
     <label for="country">Country</label>
-    <select id="country" name="country" ngModel>
+    <select id="country" name="country" [ngModel]="defaultCountryl">
       <option value="australia">Australia</option>
       <option value="canada">Canada</option>
       <option value="usa">USA</option>
@@ -29,7 +37,7 @@
 
     <label for="gender">Gender:</label>
     <span *ngFor="let gen of gender">
-      <input type="radio" id="{{gen.id}}" value="{{gen.value}}" name="gender" ngModel>
+      <input type="radio" id="{{gen.id}}" value="{{gen.value}}" name="gender" [ngModel]="defaultGender">
       <label for="male">{{gen.value}}</label>
     </span>
     <br><br>
@@ -40,7 +48,7 @@
       <label><input type="checkbox" value="music" name="hobbies" ngModel> Music</label>
     </div>
 
-    <input type="submit" value="Submit" id="btn">
+    <input type="submit" value="Submit" id="btn"><!-- [disabled]="!myForm.valid"-->
   </form>
 </div>
 

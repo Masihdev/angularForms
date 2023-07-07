@@ -20,7 +20,7 @@ input[type=text],[type=email], select {
   }
   
   input[type=submit]:hover {
-    background-color: #45a049;
+    // background-color: #45a049;
   }
   
   .form, .form-data{
@@ -31,9 +31,13 @@ input[type=text],[type=email], select {
     margin: 30px auto;
   }
 
-  input.ng-invalid.ng-touched{
-    border: red 1px solid;
-  }
+  // input.ng-invalid.ng-touched{
+  //   border: red 1px solid;
+  // }
   small{
     color: red;
   }
+
+  input.ng-invalid.ng-touched {
+    border: red 1px solid;
+   }
