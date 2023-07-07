@@ -10,8 +10,13 @@ export class AppComponent {
   title = 'angularForms';
   @ViewChild('myForm') form: NgForm;
   defaultCountryl = 'india';
+
   firstname: string;
   lastname: string;
+  email: string;
+  country: string;
+  gen: string;
+
   defaultGender: string = 'Male';
 
   gender = [
@@ -23,6 +28,13 @@ export class AppComponent {
 
   onSubmit() {
     console.log(this.form);
+    this.firstname = this.form.value.personalDetails.firstname;
+    this.lastname = this.form.value.personalDetails.lastname;
+    this.email = this.form.value.personalDetails.email;
+    this.country = this.form.value.country;
+    this.gen = this.form.value.gender;
+
+    this.form.reset();
   }
 
 
@@ -49,9 +61,6 @@ export class AppComponent {
       }
     });
   }
-
-
-
 
 
 
